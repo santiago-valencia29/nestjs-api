@@ -1,6 +1,7 @@
-import { Controller,Get,Post,Put,Delete, Res, HttpStatus, Body, Param,NotFoundException, Query } from '@nestjs/common';
+import { Controller,Get,Post,Put,Delete, Res, HttpStatus, Body, Param,NotFoundException, Query, UseGuards } from '@nestjs/common';
 import { CreateProductDTO } from './dto/product.dto';
 import { ProductService } from './product.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('product')
 export class ProductController {
@@ -19,6 +20,7 @@ export class ProductController {
         });
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Get('/')
     async getProducts(@Res() res){
         const products = await this.productService.getProducts();
