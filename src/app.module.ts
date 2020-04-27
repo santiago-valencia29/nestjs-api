@@ -7,10 +7,11 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ProjectModule } from './project/project.module';
 import { ClienteModule } from './dyrcocinas/cliente/cliente.module';
+import { ColorMadecorModule } from './dyrcocinas/color-madecor/color-madecor.module';
+import { FerreteriaModule } from './dyrcocinas/ferreteria/ferreteria.module';
 
 @Module({
   imports: [
-    ProductModule,
     MongooseModule.forRoot
       ('mongodb+srv://dbSantiago:santti9312@santiagocluster-vrusr.mongodb.net/portafolio?retryWrites=true&w=majority',
         {
@@ -21,8 +22,11 @@ import { ClienteModule } from './dyrcocinas/cliente/cliente.module';
         }),
         UserModule,
   AuthModule,
+  ProductModule,
   ProjectModule,
-  ClienteModule
+  ClienteModule,
+  ColorMadecorModule,
+  FerreteriaModule
   ],
   controllers: [
     AppController
