@@ -13,15 +13,15 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import * as bcrypt from 'bcrypt';
 import { AuthService } from './auth.service';
-import { UserDto } from '../users/user.dto';
-import { UsersService } from '../users/users.service';
+import { UserDto } from '../user/user.dto';
+import { UserService } from '../user/user.service';
 import { AnyExceptionFilter } from 'src/exception-filters/any-exception.filter';
 
 @Controller()
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly userService: UsersService,
+    private readonly userService: UserService,
   ) {}
 
   @UseGuards(AuthGuard('local'))
