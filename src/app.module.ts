@@ -5,6 +5,7 @@ import { ProductModule } from './product/product.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { AuthModule } from './auth/auth.module';
           useCreateIndex: true
         }),
         UsersModule,
-  AuthModule
+  AuthModule,
+  ProjectModule
   ],
   controllers: [
     AppController

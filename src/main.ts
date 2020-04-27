@@ -4,11 +4,13 @@ import * as rateLimit from 'express-rate-limit';
 import * as helmet from 'helmet';
 import * as csurf from 'csurf'
 import * as cookieParser from 'cookie-parser'
+import { AnyExceptionFilter } from './exception-filters/any-exception.filter';
 
 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // app.useGlobalFilters(new AnyExceptionFilter());
   const corsOptions = {
     origin: [
       'http://localhost:4200',

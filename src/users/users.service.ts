@@ -12,17 +12,17 @@ export class UsersService {
     return await this.userModel.find();
   }
 
-  async findOne(username: string): Promise<User> {
-    return await this.userModel.findOne({ username: username });
+  async findOne(email: string): Promise<User> {
+    return await this.userModel.findOne({ email: email });
   }
 
-  async create(user: User): Promise<{ _id: string; username: string }> {
+  async create(user: User): Promise<{ _id: string; email: string }> {
     const newUser = new this.userModel(user);
 
     const create = await newUser.save();
     const resUser = {
       _id: create._id,
-      username: create.username,
+      email: create.email,
     };
 
     return resUser;
