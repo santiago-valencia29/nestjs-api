@@ -12,7 +12,7 @@ export const ClienteSchema = new mongoose.Schema({
     cedula: {
         type: String,
         required: false,
-        unique:true
+        unique: true
     },
     nombres_apellidos: {
         type: String,
@@ -46,13 +46,16 @@ export const ClienteSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    color_madekor_REL: {
-        type: String,
-        required: false
+    color_madekor_REL:
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'ColorMadecor'
     },
     color_combinado_REL: {
-        type: String,
-        required: false
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'ColorMadecor'
     },
     precio: {
         type: Number,
@@ -74,12 +77,12 @@ export const ClienteSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    coti_ferreteria:{
-        type:[],
+    coti_ferreteria: {
+        type: [],
         required: false
     },
-    coti_madecor:{
-        type:[],
+    coti_madecor: {
+        type: [],
         required: false
     }
 }, {

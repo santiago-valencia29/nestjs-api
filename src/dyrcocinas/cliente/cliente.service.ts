@@ -11,7 +11,7 @@ export class ClienteService {
     constructor(@InjectModel('Cliente') readonly clienteModel: Model<Cliente>){}
 
     async getClientes():Promise<Cliente[]>{
-        const clientes = await this.clienteModel.find()
+        const clientes = await this.clienteModel.find().populate('color_madekor_REL').populate('color_combinado_REL').exec();
         return clientes;
     }
 
