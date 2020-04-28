@@ -11,7 +11,7 @@ export class ColorMadecorController {
 
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @UseFilters(MongoExceptionFilter)
     @Post('/save-colorMadecor')
     async createPost(@Res() res,@Body() createColorMadecorDTO:CreateColorMadecorDTO){  //enviar respuesta a colorMadecors    createColorMadecorDTO que es lo que necesariamente vamos a recibir
@@ -23,7 +23,7 @@ export class ColorMadecorController {
         });
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Get('/')
     async getColorMadecors(@Res() res){
         const colorMadecors = await this.colorMadecorService.getColorMadecors();
@@ -32,7 +32,7 @@ export class ColorMadecorController {
         })
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Get('/:colorMadecorID') // utilizando un parametro
     async getColorMadecor(@Res() res ,@Param('colorMadecorID') colorMadecorID){
         const colorMadecor = await this.colorMadecorService.getColorMadecor(colorMadecorID);
@@ -41,6 +41,7 @@ export class ColorMadecorController {
 
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Delete('/delete')  //utilizando una consulta
     async deleteColorMadecor(@Res() res,@Query('colorMadecorID') colorMadecorID){
      const colorMadecorDeleted = await   this.colorMadecorService.deleteColorMadecor(colorMadecorID);
@@ -50,6 +51,7 @@ export class ColorMadecorController {
             colorMadecorDeleted});
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Put('/update')
     async updateColorMadecor(@Res() res, @Body()createColorMadecorDTO:CreateColorMadecorDTO, @Query('colorMadecorID')colorMadecorID){
         const updatedColorMadecor = await this.colorMadecorService.updateColorMadecor(colorMadecorID,createColorMadecorDTO);

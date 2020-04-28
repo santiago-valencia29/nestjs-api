@@ -11,7 +11,7 @@ export class ClienteController {
 
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @UseFilters(MongoExceptionFilter)
     @Post('/save-cliente')
     async createPost(@Res() res,@Body() createClienteDTO:CreateClienteDTO){  //enviar respuesta a clientes    createClienteDTO que es lo que necesariamente vamos a recibir
@@ -23,7 +23,7 @@ export class ClienteController {
         });
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Get('/')
     async getClientes(@Res() res){
         const clientes = await this.clienteService.getClientes();
@@ -32,7 +32,7 @@ export class ClienteController {
         })
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Get('/:clienteID') // utilizando un parametro
     async getCliente(@Res() res ,@Param('clienteID') clienteID){
         const cliente = await this.clienteService.getCliente(clienteID);
@@ -41,6 +41,7 @@ export class ClienteController {
 
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Delete('/delete')  //utilizando una consulta
     async deleteCliente(@Res() res,@Query('clienteID') clienteID){
      const clienteDeleted = await   this.clienteService.deleteCliente(clienteID);
@@ -50,6 +51,7 @@ export class ClienteController {
             clienteDeleted});
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Put('/update')
     async updateCliente(@Res() res, @Body()createClienteDTO:CreateClienteDTO, @Query('clienteID')clienteID){
         const updatedCliente = await this.clienteService.updateCliente(clienteID,createClienteDTO);

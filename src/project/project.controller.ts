@@ -39,6 +39,8 @@ export class ProjectController {
 
     }
 
+
+    @UseGuards(AuthGuard('jwt'))
     @Delete('/delete')  //utilizando una consulta
     async deleteProject(@Res() res,@Query('projectID') projectID){
      const projectDeleted = await   this.projectService.deleteProject(projectID);
@@ -48,6 +50,7 @@ export class ProjectController {
             projectDeleted});
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Put('/update')
     async updateProject(@Res() res, @Body()createProjectDTO:CreateProjectDTO, @Query('projectID')projectID){
         const updatedProject = await this.projectService.updateProject(projectID,createProjectDTO);

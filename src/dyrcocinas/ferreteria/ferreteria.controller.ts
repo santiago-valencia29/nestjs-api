@@ -11,7 +11,7 @@ export class FerreteriaController {
 
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @UseFilters(MongoExceptionFilter)
     @Post('/save-ferreteria')
     async createPost(@Res() res,@Body() createFerreteriaDTO:CreateFerreteriaDTO){  //enviar respuesta a ferreterias    createFerreteriaDTO que es lo que necesariamente vamos a recibir
@@ -23,7 +23,7 @@ export class FerreteriaController {
         });
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Get('/')
     async getFerreterias(@Res() res){
         const ferreterias = await this.ferreteriaService.getFerreterias();
@@ -32,7 +32,7 @@ export class FerreteriaController {
         })
     }
 
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Get('/:ferreteriaID') // utilizando un parametro
     async getFerreteria(@Res() res ,@Param('ferreteriaID') ferreteriaID){
         const ferreteria = await this.ferreteriaService.getFerreteria(ferreteriaID);
@@ -41,6 +41,7 @@ export class FerreteriaController {
 
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Delete('/delete')  //utilizando una consulta
     async deleteFerreteria(@Res() res,@Query('ferreteriaID') ferreteriaID){
      const ferreteriaDeleted = await   this.ferreteriaService.deleteFerreteria(ferreteriaID);
@@ -50,6 +51,7 @@ export class FerreteriaController {
             ferreteriaDeleted});
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Put('/update')
     async updateFerreteria(@Res() res, @Body()createFerreteriaDTO:CreateFerreteriaDTO, @Query('ferreteriaID')ferreteriaID){
         const updatedFerreteria = await this.ferreteriaService.updateFerreteria(ferreteriaID,createFerreteriaDTO);

@@ -22,7 +22,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UserService,
-  ) {}
+  ) { }
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
@@ -30,19 +30,20 @@ export class AuthController {
     return await this.authService.login(req.user);
   }
 
-  @UseGuards(AuthGuard('jwt')) // esto es un ejemplo
+  @UseGuards(AuthGuard('jwt')) // esto es un ejemplo de obtener usuarios con auth jmt
   @Get('users')
   @UseFilters(AnyExceptionFilter)
   async getProfile(@Res() res) {
     const users = await this.userService.findAll();
-    if(!users) throw new NotFoundException('Users Not Found');
+    if (!users) throw new NotFoundException('Users Not Found');
     return res.status(HttpStatus.OK).json({
-      users});
+      users
+    });
   }
 
   @Post('register')
   async register(@Body() data: UserDto) {
-    const user: any  = {
+    const user: any = {
       email: data.email,
       password: await bcrypt.hash(data.password, 10),
     };

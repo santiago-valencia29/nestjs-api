@@ -20,7 +20,7 @@ export class ProductController {
         });
     }
 
-    @UseGuards(AuthGuard('jwt'))
+
     @Get('/')
     async getProducts(@Res() res){
         const products = await this.productService.getProducts();
