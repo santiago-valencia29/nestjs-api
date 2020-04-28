@@ -25,10 +25,10 @@ async function bootstrap() {
     }),
   );
   app.use(helmet());
-  app.enableCors();
+  app.enableCors(); //acceder desde una app angular
   
   // app.use(csurf());
   // app.use(cookieParser());
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
