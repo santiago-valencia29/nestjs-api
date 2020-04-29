@@ -12,7 +12,7 @@ export const ClienteSchema = new mongoose.Schema({
     cedula: {
         type: String,
         required: false,
-        unique: true
+        unique: false
     },
     nombres_apellidos: {
         type: String,
